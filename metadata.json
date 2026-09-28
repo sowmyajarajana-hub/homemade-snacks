@@ -1,0 +1,6 @@
+{
+  "name": "HomeBite Snacks",
+  "description": "Artisanal homemade snacks, traditional savories, fresh cookies, cakes, and gift hampers prepared in small batches with love and quality ingredients.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
