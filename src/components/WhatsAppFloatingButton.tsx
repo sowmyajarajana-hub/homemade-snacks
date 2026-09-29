@@ -9,7 +9,7 @@ export function WhatsAppFloatingButton() {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-40">
+    <div className="fixed bottom-5 left-5 z-40">
       <button
         onClick={handleClick}
         className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20BA5A] text-white px-4 py-3 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 group active:scale-95 cursor-pointer"

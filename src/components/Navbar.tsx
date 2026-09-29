@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { ShoppingBag, Search, MessageCircle, Menu, X } from 'lucide-react';
+import { ShoppingBag, Search, MessageCircle, Menu, X, Bot } from 'lucide-react';
 
 interface NavbarProps {
   cartItemCount: number;
   onOpenCart: () => void;
   onToggleSearch: () => void;
   onNavigateSection: (sectionId: string) => void;
+  onOpenChatbot?: () => void;
 }
 
 export function Navbar({
@@ -13,6 +14,7 @@ export function Navbar({
   onOpenCart,
   onToggleSearch,
   onNavigateSection,
+  onOpenChatbot,
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -96,6 +98,18 @@ export function Navbar({
             <Search className="w-5 h-5" />
           </button>
 
+          {/* AI Assistant Chatbot Button */}
+          {onOpenChatbot && (
+            <button
+              onClick={onOpenChatbot}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#8C3D18] bg-[#FDF2E9] hover:bg-[#FCE7D6] border border-[#F3C4A5] rounded-full transition-colors whitespace-nowrap cursor-pointer"
+              title="Chat with our Snack Assistant"
+            >
+              <Bot className="w-3.5 h-3.5 text-[#C25E2E]" />
+              <span className="hidden sm:inline">Ask AI</span>
+            </button>
+          )}
+
           {/* WhatsApp Direct Order Button */}
           <button
             onClick={handleDirectWhatsApp}
@@ -174,10 +188,22 @@ export function Navbar({
             </button>
           </div>
 
-          <div className="pt-2 border-t border-[#EFECE6]">
+          <div className="pt-2 border-t border-[#EFECE6] space-y-2">
+            {onOpenChatbot && (
+              <button
+                onClick={() => {
+                  onOpenChatbot();
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold text-[#8C3D18] bg-[#FDF2E9] hover:bg-[#FCE7D6] border border-[#F3C4A5] rounded-lg transition-colors cursor-pointer"
+              >
+                <Bot className="w-4 h-4 text-[#C25E2E]" />
+                <span>Chat with Snack Assistant (AI)</span>
+              </button>
+            )}
             <button
               onClick={handleDirectWhatsApp}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold text-[#166534] bg-[#DCFCE7] hover:bg-[#BBF7D0] border border-[#86EFAC] rounded-lg transition-colors"
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold text-[#166534] bg-[#DCFCE7] hover:bg-[#BBF7D0] border border-[#86EFAC] rounded-lg transition-colors cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 fill-current" />
               <span>Chat & Order on WhatsApp</span>

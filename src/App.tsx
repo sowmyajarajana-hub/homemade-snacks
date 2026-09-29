@@ -20,6 +20,7 @@ import { OurStorySection } from './components/OurStorySection';
 import { CustomerReviewsSection } from './components/CustomerReviewsSection';
 import { ContactSection } from './components/ContactSection';
 import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
+import { ChatbotWidget } from './components/ChatbotWidget';
 import { Footer } from './components/Footer';
 import { Sparkles, Flame, Check } from 'lucide-react';
 
@@ -34,6 +35,7 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [confirmedOrder, setConfirmedOrder] = useState<OrderRecord | null>(null);
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   // Cart state
   const [cartItems, setCartItems] = useState<CartItem[]>([
@@ -191,6 +193,7 @@ export default function App() {
         onOpenCart={() => setIsCartOpen(true)}
         onToggleSearch={handleToggleSearch}
         onNavigateSection={handleNavigateSection}
+        onOpenChatbot={() => setIsChatbotOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -334,6 +337,13 @@ export default function App() {
 
       {/* Floating Instant WhatsApp Button */}
       <WhatsAppFloatingButton />
+
+      {/* Floating AI Snack Assistant Chatbot connected to n8n */}
+      <ChatbotWidget
+        isOpen={isChatbotOpen}
+        onToggle={() => setIsChatbotOpen((prev) => !prev)}
+        onClose={() => setIsChatbotOpen(false)}
+      />
 
       {/* Product Detail Modal */}
       <ProductDetailModal
